@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contract.ficium.net/schemas/envelope.v1.json",
+  "title": "Event envelope, v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "version",
+    "source",
+    "occurred_at",
+    "aggregate_id",
+    "sequence",
+    "data"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^evt_[0-9A-Za-z]{10,40}$"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "ping",
+        "request.published",
+        "request.status_changed",
+        "chat.message",
+        "bid.placed",
+        "bid.updated",
+        "bid.withdrawn",
+        "pipeline.stage_advanced",
+        "market.intelligence"
+      ]
+    },
+    "version": {
+      "type": "integer",
+      "enum": [
+        1
+      ]
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "borrower",
+        "institution"
+      ]
+    },
+    "occurred_at": {
+      "$ref": "common.v1.json#/$defs/timestamp"
+    },
+    "aggregate_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "data": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ping"
+          },
+          "version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "events/ping.v1.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "request.published"
+          },
+          "version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "events/request.published.v1.json"
+          },
+          "source": {
+            "const": "borrower"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "request.status_changed"
+          },
+          "version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "events/request.status_changed.v1.json"
+          },
+          "source": {
+            "const": "borrower"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "chat.message"
+          },
+          "version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "events/chat.message.v1.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "bid.placed"
+          },
+          "version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "events/bid.placed.v1.json"
+          },
+          "source": {
+            "const": "institution"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "bid.updated"
+          },
+          "version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "events/bid.updated.v1.json"
+          },
+          "source": {
+            "const": "institution"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "bid.withdrawn"
+          },
+          "version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "events/bid.withdrawn.v1.json"
+          },
+          "source": {
+            "const": "institution"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "pipeline.stage_advanced"
+          },
+          "version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "events/pipeline.stage_advanced.v1.json"
+          },
+          "source": {
+            "const": "institution"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "market.intelligence"
+          },
+          "version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "events/market.intelligence.v1.json"
+          },
+          "source": {
+            "const": "institution"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "chat.message"
+          },
+          "source": {
+            "const": "borrower"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "properties": {
+              "sender_side": {
+                "const": "borrower"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "chat.message"
+          },
+          "source": {
+            "const": "institution"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "properties": {
+              "sender_side": {
+                "const": "institution"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

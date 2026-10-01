@@ -1,0 +1,16 @@
+{
+  "description": "the envelope is closed to unknown fields",
+  "envelope": {
+    "id": "evt_01J9FIXTURE0001",
+    "type": "ping",
+    "version": 1,
+    "source": "borrower",
+    "occurred_at": "2026-10-01T09:14:03Z",
+    "aggregate_id": "ping",
+    "sequence": 1,
+    "data": {
+      "note": "hello"
+    },
+    "secret": "x"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contract.ficium.net/schemas/events/ping.v1.json",
+  "title": "Connectivity check, either direction",
+  "type": "object",
+  "required": [],
+  "properties": {
+    "note": {
+      "type": "string",
+      "maxLength": 200
+    }
+  }
+}

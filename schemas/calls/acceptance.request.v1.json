@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contract.ficium.net/schemas/calls/acceptance.request.v1.json",
+  "title": "POST /integration/v1/acceptances request body",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "bid_id",
+    "request_id",
+    "anon_borrower_id",
+    "released_identity",
+    "consent_ref"
+  ],
+  "properties": {
+    "bid_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "request_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "anon_borrower_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "consent_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "released_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "full_name"
+      ],
+      "description": "Only fields the borrower consented to release. Unknown fields are rejected.",
+      "properties": {
+        "full_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "address": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "date_of_birth": {
+          "$ref": "../common.v1.json#/$defs/date"
+        },
+        "document_number": {
+          "type": "string",
+          "maxLength": 40
+        }
+      }
+    }
+  }
+}

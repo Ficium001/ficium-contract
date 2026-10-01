@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ficium-contract"
+version = "1.0.0"
+description = "Ficium integration contract v1: event schemas, validation and signing"
+requires-python = ">=3.12"
+dependencies = ["jsonschema>=4.18", "referencing>=0.30", "rfc3339-validator>=0.1.4", "jsonschema[format-nongpl]>=4.18"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.setuptools]
+package-dir = {"" = "python"}
+packages = ["ficium_contract"]
+
+[tool.setuptools.package-data]
+ficium_contract = ["schemas/**/*.json", "schemas/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

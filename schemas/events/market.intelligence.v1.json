@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contract.ficium.net/schemas/events/market.intelligence.v1.json",
+  "title": "Daily market aggregates for the borrower side",
+  "type": "object",
+  "required": [
+    "as_of",
+    "rates"
+  ],
+  "properties": {
+    "as_of": {
+      "$ref": "../common.v1.json#/$defs/date"
+    },
+    "rates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "product_code"
+        ],
+        "properties": {
+          "product_code": {
+            "$ref": "../common.v1.json#/$defs/product_type"
+          }
+        }
+      }
+    },
+    "outcomes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "product_code"
+        ],
+        "properties": {
+          "product_code": {
+            "$ref": "../common.v1.json#/$defs/product_type"
+          }
+        }
+      }
+    },
+    "competitiveness": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "product_code"
+        ],
+        "properties": {
+          "product_code": {
+            "$ref": "../common.v1.json#/$defs/product_type"
+          }
+        }
+      }
+    }
+  }
+}
