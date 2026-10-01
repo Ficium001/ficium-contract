@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contract.ficium.net/schemas/events/chat.message.v1.json",
+  "title": "A message on a request thread, either direction",
+  "type": "object",
+  "required": [
+    "message_id",
+    "request_id",
+    "institution_id",
+    "sender_side",
+    "body",
+    "sent_at"
+  ],
+  "properties": {
+    "message_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "request_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "institution_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "sender_side": {
+      "type": "string",
+      "enum": [
+        "borrower",
+        "institution"
+      ]
+    },
+    "template_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 100
+    },
+    "params": {
+      "type": "object"
+    },
+    "body": {
+      "$ref": "../common.v1.json#/$defs/text_body"
+    },
+    "free_text_allowed": {
+      "type": "boolean",
+      "description": "Institution side only: whether the borrower may now reply in free text"
+    },
+    "sent_at": {
+      "$ref": "../common.v1.json#/$defs/timestamp"
+    }
+  },
+  "not": {
+    "anyOf": [
+      {
+        "required": [
+          "sender_id"
+        ]
+      },
+      {
+        "required": [
+          "user_id"
+        ]
+      },
+      {
+        "required": [
+          "consumer_id"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "bid_id": "00000000-0000-4000-8000-000000000010",
+  "request_id": "00000000-0000-4000-8000-000000000001",
+  "pipeline_id": "00000000-0000-4000-8000-000000000040",
+  "institution": {
+    "institution_id": "00000000-0000-4000-8000-000000000020",
+    "name": "MCB",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "deal": {
+    "amount": 3000000,
+    "rate": 0.0425,
+    "term_months": 240
+  }
+}

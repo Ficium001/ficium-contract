@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contract.ficium.net/schemas/common.v1.json",
+  "title": "Shared definitions, v1",
+  "$defs": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 code, e.g. MUR"
+    },
+    "amount": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Decimal fraction: 0.0425 means 4.25% a year"
+    },
+    "term_months": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "product_type": {
+      "type": "string",
+      "enum": [
+        "sme_loan",
+        "personal_loan",
+        "mortgage",
+        "fixed_deposit",
+        "savings_account",
+        "credit_card",
+        "business_account",
+        "investment_account",
+        "leasing",
+        "overdraft",
+        "business_loan",
+        "equities",
+        "unit_trust",
+        "savings_plan",
+        "government_bonds",
+        "offshore_investment",
+        "mixed_portfolio"
+      ]
+    },
+    "request_status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "awaiting_consent",
+        "accepted",
+        "closed",
+        "expired",
+        "rejected"
+      ],
+      "description": "Borrower-side vocabulary. The borrower app owns request status."
+    },
+    "text_body": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@ficium/contract",
+  "version": "1.0.0",
+  "description": "Ficium integration contract v1: event schemas, validation and signing",
+  "type": "module",
+  "main": "ts/dist/index.js",
+  "types": "ts/dist/index.d.ts",
+  "files": ["schemas", "ts/dist/index.js", "ts/dist/index.d.ts"],
+  "scripts": {
+    "build": "tsc -p ts",
+    "prepare": "tsc -p ts",
+    "test": "tsc -p ts && node --test ts/dist/test/contract.test.js"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "~5.9.0"
+  },
+  "engines": { "node": ">=20" }
+}

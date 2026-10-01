@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contract.ficium.net/schemas/events/bid.placed.v1.json",
+  "title": "An institution placed a bid on a request",
+  "type": "object",
+  "required": [
+    "bid_id",
+    "request_id",
+    "institution_id",
+    "institution_name",
+    "status",
+    "rate",
+    "rate_type",
+    "amount_offered",
+    "currency",
+    "term_months",
+    "submitted_at"
+  ],
+  "properties": {
+    "bid_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "request_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "institution_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "institution_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "institution_logo_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "submitted",
+        "under_review"
+      ]
+    },
+    "rate": {
+      "$ref": "../common.v1.json#/$defs/rate"
+    },
+    "rate_type": {
+      "type": "string",
+      "enum": [
+        "fixed",
+        "variable"
+      ]
+    },
+    "rate_valid_days": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "amount_offered": {
+      "$ref": "../common.v1.json#/$defs/amount"
+    },
+    "currency": {
+      "$ref": "../common.v1.json#/$defs/currency"
+    },
+    "term_months": {
+      "$ref": "../common.v1.json#/$defs/term_months"
+    },
+    "conditions": {
+      "type": "object"
+    },
+    "fee_structure": {
+      "type": "object"
+    },
+    "benefits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "value_display": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "is_guaranteed": {
+            "type": "boolean"
+          },
+          "cat_code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "allocations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "product_type",
+          "amount_offered"
+        ],
+        "properties": {
+          "product_type": {
+            "$ref": "../common.v1.json#/$defs/product_type"
+          },
+          "product_label": {
+            "type": "string"
+          },
+          "amount_offered": {
+            "$ref": "../common.v1.json#/$defs/amount"
+          },
+          "rate": {
+            "$ref": "../common.v1.json#/$defs/rate"
+          },
+          "term_months": {
+            "$ref": "../common.v1.json#/$defs/term_months"
+          }
+        }
+      }
+    },
+    "submitted_at": {
+      "$ref": "../common.v1.json#/$defs/timestamp"
+    },
+    "expires_at": {
+      "oneOf": [
+        {
+          "$ref": "../common.v1.json#/$defs/timestamp"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

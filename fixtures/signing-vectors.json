@@ -1,0 +1,23 @@
+[
+  {
+    "description": "ascii body",
+    "key": "test-key-not-a-secret-0123456789abcdef",
+    "timestamp": 1790000000,
+    "body": "{\"id\":\"evt_01J9FIXTURE0001\",\"type\":\"ping\"}",
+    "header": "t=1790000000,v1=fb2e3cbaf74c0a2274ba8de6b7c020b0117127af6747b76fb0f6b7ec5cb3040b"
+  },
+  {
+    "description": "unicode body",
+    "key": "test-key-not-a-secret-0123456789abcdef",
+    "timestamp": 1790000300,
+    "body": "{\"note\":\"Île Maurice, Rs 1 000\"}",
+    "header": "t=1790000300,v1=7a09c600aee03252eeb269920645ef9d5a58f443db0a0a97ad3220b9e6f1bf8c"
+  },
+  {
+    "description": "empty object",
+    "key": "test-key-not-a-secret-0123456789abcdef",
+    "timestamp": 1790000600,
+    "body": "{}",
+    "header": "t=1790000600,v1=001e039da1f49aff830bd3bc0a3418a820c1d3878f68cf458df0be64acc31375"
+  }
+]

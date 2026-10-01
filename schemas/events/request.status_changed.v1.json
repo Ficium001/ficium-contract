@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contract.ficium.net/schemas/events/request.status_changed.v1.json",
+  "title": "A request's status changed on the borrower side",
+  "type": "object",
+  "required": [
+    "request_id",
+    "status",
+    "changed_at"
+  ],
+  "properties": {
+    "request_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "status": {
+      "$ref": "../common.v1.json#/$defs/request_status"
+    },
+    "changed_at": {
+      "$ref": "../common.v1.json#/$defs/timestamp"
+    },
+    "reason": {
+      "type": "string",
+      "maxLength": 200
+    }
+  }
+}

@@ -1,0 +1,66 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Secret scan
+        uses: trufflesecurity/trufflehog@27b0417c16317ca9a472a9a8092acce143b49c55 # v3.95.9
+        with:
+          extra_args: --only-verified
+
+  consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: pip install -e ".[test]"
+      - name: Versions, $ids and fixture coverage
+        run: python scripts/check_consistency.py
+      - name: Signing vectors match the reference implementation
+        run: python scripts/make_signing_vectors.py && git diff --exit-code fixtures/signing-vectors.json
+
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.12", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e ".[test]"
+      - run: pytest -q
+      - name: Installed wheel works outside the repo
+        run: |
+          python -m venv /tmp/w && /tmp/w/bin/pip install -q .
+          cd /tmp && /tmp/w/bin/python -c "import ficium_contract as fc, json; fc.validate_event(json.load(open('$GITHUB_WORKSPACE/fixtures/events/valid/bid-placed.json')))"
+
+  node:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ["20", "22"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: Package ships schemas and build
+        run: npm pack --dry-run 2>&1 | tee pack.txt && grep -q "schemas/envelope.v1.json" pack.txt && grep -q "ts/dist/index.js" pack.txt

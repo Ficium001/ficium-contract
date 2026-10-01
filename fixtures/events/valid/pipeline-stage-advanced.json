@@ -1,0 +1,19 @@
+{
+  "id": "evt_01J9FIXTURE0001",
+  "type": "pipeline.stage_advanced",
+  "version": 1,
+  "source": "institution",
+  "occurred_at": "2026-10-01T09:14:03Z",
+  "aggregate_id": "00000000-0000-4000-8000-000000000040",
+  "sequence": 1,
+  "data": {
+    "pipeline_id": "00000000-0000-4000-8000-000000000040",
+    "request_id": "00000000-0000-4000-8000-000000000001",
+    "bid_id": "00000000-0000-4000-8000-000000000010",
+    "stage_label": "Valuation",
+    "stage_position": 2,
+    "visible_stage_count": 5,
+    "pipeline_complete": false,
+    "at": "2026-10-05T09:00:00Z"
+  }
+}

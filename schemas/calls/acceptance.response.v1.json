@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contract.ficium.net/schemas/calls/acceptance.response.v1.json",
+  "title": "POST /integration/v1/acceptances 200 response",
+  "type": "object",
+  "required": [
+    "bid_id",
+    "request_id",
+    "pipeline_id",
+    "institution",
+    "deal"
+  ],
+  "properties": {
+    "bid_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "request_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "pipeline_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "institution": {
+      "type": "object",
+      "required": [
+        "institution_id",
+        "name"
+      ],
+      "properties": {
+        "institution_id": {
+          "$ref": "../common.v1.json#/$defs/uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "contact_email": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "email"
+        },
+        "contact_phone": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "deal": {
+      "type": "object",
+      "required": [
+        "amount",
+        "rate",
+        "term_months"
+      ],
+      "properties": {
+        "amount": {
+          "$ref": "../common.v1.json#/$defs/amount"
+        },
+        "rate": {
+          "$ref": "../common.v1.json#/$defs/rate"
+        },
+        "term_months": {
+          "$ref": "../common.v1.json#/$defs/term_months"
+        }
+      }
+    }
+  }
+}

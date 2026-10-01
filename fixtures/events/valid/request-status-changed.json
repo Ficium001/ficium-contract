@@ -1,0 +1,14 @@
+{
+  "id": "evt_01J9FIXTURE0001",
+  "type": "request.status_changed",
+  "version": 1,
+  "source": "borrower",
+  "occurred_at": "2026-10-01T09:14:03Z",
+  "aggregate_id": "00000000-0000-4000-8000-000000000001",
+  "sequence": 2,
+  "data": {
+    "request_id": "00000000-0000-4000-8000-000000000001",
+    "status": "expired",
+    "changed_at": "2026-10-15T00:00:00Z"
+  }
+}

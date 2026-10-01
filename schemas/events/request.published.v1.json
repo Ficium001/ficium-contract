@@ -1,0 +1,384 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contract.ficium.net/schemas/events/request.published.v1.json",
+  "title": "A borrower request, anonymised, published to institutions",
+  "type": "object",
+  "required": [
+    "request_id",
+    "anon_borrower_id",
+    "product_type",
+    "amount",
+    "currency",
+    "phase1",
+    "created_at"
+  ],
+  "properties": {
+    "request_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "anon_borrower_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "product_type": {
+      "$ref": "../common.v1.json#/$defs/product_type"
+    },
+    "amount": {
+      "$ref": "../common.v1.json#/$defs/amount"
+    },
+    "currency": {
+      "$ref": "../common.v1.json#/$defs/currency"
+    },
+    "term_months": {
+      "oneOf": [
+        {
+          "$ref": "../common.v1.json#/$defs/term_months"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "max_rate": {
+      "oneOf": [
+        {
+          "$ref": "../common.v1.json#/$defs/rate"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "decision_deadline": {
+      "oneOf": [
+        {
+          "$ref": "../common.v1.json#/$defs/timestamp"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "allocation_mode": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "client_specified",
+        "institution_decides",
+        null
+      ]
+    },
+    "allocations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "product_type",
+          "amount"
+        ],
+        "properties": {
+          "product_type": {
+            "$ref": "../common.v1.json#/$defs/product_type"
+          },
+          "amount": {
+            "$ref": "../common.v1.json#/$defs/amount"
+          },
+          "sort_order": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "phase1": {
+      "type": "object",
+      "properties": {
+        "loan_purpose": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "collateral_type": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "collateral_sub": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "ltv_pct": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "kyc_verified": {
+          "type": "boolean"
+        },
+        "employment_status": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "employment_type": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "employer": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "years_employed": {
+          "type": "number",
+          "minimum": 0
+        },
+        "gross_monthly_income": {
+          "type": "number",
+          "minimum": 0
+        },
+        "income_verified": {
+          "type": "boolean"
+        },
+        "dsr_current_pct": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "dsr_post_pct": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "net_worth_band": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "has_existing_loans": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "existing_monthly_repayment": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "existing_loan_balance": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "loan_breakdown": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "health_score": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "risk_score": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "affordability_score": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "risk_tier": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        },
+        "age": {
+          "type": "integer",
+          "minimum": 18,
+          "maximum": 120
+        },
+        "risk_appetite": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "investment_horizon": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "liquidity_pref": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "investment_style": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "target_amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "monthly_contribution": {
+          "type": "number",
+          "minimum": 0
+        },
+        "investment_objective": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "investment_product_answers": {
+          "type": "object"
+        }
+      },
+      "not": {
+        "anyOf": [
+          {
+            "required": [
+              "full_name"
+            ]
+          },
+          {
+            "required": [
+              "first_name"
+            ]
+          },
+          {
+            "required": [
+              "last_name"
+            ]
+          },
+          {
+            "required": [
+              "name"
+            ]
+          },
+          {
+            "required": [
+              "email"
+            ]
+          },
+          {
+            "required": [
+              "phone"
+            ]
+          },
+          {
+            "required": [
+              "address"
+            ]
+          },
+          {
+            "required": [
+              "date_of_birth"
+            ]
+          },
+          {
+            "required": [
+              "document_number"
+            ]
+          },
+          {
+            "required": [
+              "nic"
+            ]
+          },
+          {
+            "required": [
+              "client_id"
+            ]
+          },
+          {
+            "required": [
+              "consumer_id"
+            ]
+          },
+          {
+            "required": [
+              "user_id"
+            ]
+          }
+        ]
+      },
+      "description": "Anonymised borrower profile built on the borrower side. Direct identifiers are rejected by schema."
+    },
+    "created_at": {
+      "$ref": "../common.v1.json#/$defs/timestamp"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contract.ficium.net/schemas/events/pipeline.stage_advanced.v1.json",
+  "title": "A deal moved to a stage the borrower may see",
+  "type": "object",
+  "required": [
+    "pipeline_id",
+    "request_id",
+    "stage_label",
+    "stage_position",
+    "visible_stage_count",
+    "pipeline_complete",
+    "at"
+  ],
+  "properties": {
+    "pipeline_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "request_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "bid_id": {
+      "$ref": "../common.v1.json#/$defs/uuid"
+    },
+    "stage_label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "stage_position": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "visible_stage_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "pipeline_complete": {
+      "type": "boolean"
+    },
+    "at": {
+      "$ref": "../common.v1.json#/$defs/timestamp"
+    }
+  }
+}
