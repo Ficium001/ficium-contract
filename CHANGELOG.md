@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0 — 2026-10-02
+
+- `request.published`: an allocation line's `amount` may be `null` (and is no longer required). Found by the contract gate on the first
+  real backfill: 2 of 13 live requests have allocation lines with no amount because the borrower lets institutions decide the split.
+  A line still needs a `product_type`. Loosening only; every v1.1.0 event stays valid.
+
 ## 1.1.0 — 2026-10-02
 
 - `request.published`: the employer name is no longer part of Phase 1. It is removed from the allowed
