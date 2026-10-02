@@ -145,14 +145,6 @@
             "null"
           ]
         },
-        "employer": {
-          "type": [
-            "string",
-            "number",
-            "boolean",
-            "null"
-          ]
-        },
         "years_employed": {
           "type": "number",
           "minimum": 0
@@ -372,10 +364,15 @@
             "required": [
               "user_id"
             ]
+          },
+          {
+            "required": [
+              "employer"
+            ]
           }
         ]
       },
-      "description": "Anonymised borrower profile built on the borrower side. Direct identifiers are rejected by schema."
+      "description": "Anonymised borrower profile built on the borrower side. Direct identifiers, and the employer name (which can identify a person in a small market), are rejected by schema."
     },
     "created_at": {
       "$ref": "../common.v1.json#/$defs/timestamp"
