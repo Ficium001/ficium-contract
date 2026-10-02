@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0 — 2026-10-02
+
+- `request.published`: the employer name is no longer part of Phase 1. It is removed from the allowed
+  properties and `employer` is added to the rejected identifiers. In a market the size of Mauritius the employer
+  alone can identify a borrower. This tightens validation, but no producer existed yet, so no sender is affected.
+
 ## 1.0.0 — 2026-10-01
 
 - Envelope v1 with per-type routing and source rules.

@@ -20,7 +20,7 @@ Design and migration plan: *Ficium integration contract v1* (Claude Doc).
 
 - **Rates are decimal fractions.** `0.0425` means 4.25% a year. `4.25` is rejected.
 - **Direction is enforced.** Request events come only from `borrower`; bid, pipeline and market events only from `institution`; `chat.message` from either, with `data.sender_side` equal to `source`.
-- **Phase 1 never carries direct identifiers.** Names, email, phone, address, date of birth, NIC number and real user ids are rejected by schema.
+- **Phase 1 never carries direct identifiers.** Names, email, phone, address, date of birth, NIC number, real user ids and the employer name are rejected by schema.
 - **Additive changes stay v1.** New optional fields are allowed; receivers ignore fields they don't know. The envelope itself is closed.
 - **Breaking changes get v2.** The sender emits v1 and v2 until the receiver has moved. Receivers ship support first.
 
