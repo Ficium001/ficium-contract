@@ -74,15 +74,22 @@
       "items": {
         "type": "object",
         "required": [
-          "product_type",
-          "amount"
+          "product_type"
         ],
         "properties": {
           "product_type": {
             "$ref": "../common.v1.json#/$defs/product_type"
           },
           "amount": {
-            "$ref": "../common.v1.json#/$defs/amount"
+            "oneOf": [
+              {
+                "$ref": "../common.v1.json#/$defs/amount"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Null when the borrower lets institutions decide the split (allocation_mode institution_decides)."
           },
           "sort_order": {
             "type": "integer",
